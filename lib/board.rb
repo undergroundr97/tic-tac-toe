@@ -1,4 +1,4 @@
-class Board
+class Board < Array
   def initialize
     @board = Array.new(9," ")
   end
@@ -14,5 +14,8 @@ class Board
   end
   def []=(index, value) # acess and change board inside other files
     @board[index] = value
+  end
+  def get_board
+    @board
   end
 end

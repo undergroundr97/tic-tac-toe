@@ -7,29 +7,33 @@ class Game
   end
   def start_game
     player1 = Player.new('Player1', 'X', @board)
-    player2 = Player.new('Player2', 'O', @board)
+    player2 = Player.new('Player2', '0', @board)
     current_player = player1
 
     while true
       puts "#{current_player.name} turn"
-      @board.display_board
       puts "select a position 1-9"
-      position = gets.chomp.to_i + 1
+      position = gets.chomp.to_i - 1
       current_player.select_position(position)
+
+
       winner = check_winner(@board)
-      current_player = current_player == player1 ? player2 : player1
       if winner 
         puts "#{winner} wins"
         break
       end
       if check_draw(@board)
-        puts "Its a draw"
+        puts 'Its a draw'
         break
       end
+      current_player = (current_player == player1) ? player2 : player1
     end
   end
   def check_draw(board)
-    !board.include?(" ")
+    if !board.get_board.include?(" ")  
+      return true
+    end
+    false
   end
   def check_winner(board)
     win_combinations = [
@@ -43,8 +47,7 @@ class Game
         return board[combination[0]]  # Retorna o vencedor (X ou O)
       end
     end
-  
-    nil  # Nenhum vencedor
+    nil
   end
 end
 
