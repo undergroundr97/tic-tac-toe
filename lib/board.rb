@@ -3,13 +3,16 @@ class Board
     @board = Array.new(9," ")
   end
   def display_board
-    puts "#{@board[1]} | #{@board[2]} | #{@board[3]}"
+    puts "#{@board[0]} | #{@board[1]} | #{@board[2]}"
     puts "- + - + -"
-    puts "#{@board[4]} | #{@board[5]} | #{@board[6]}"
+    puts "#{@board[3]} | #{@board[4]} | #{@board[5]}"
     puts "- + - + -"
-    puts "#{@board[7]} | #{@board[8]} | #{@board[9]}"
+    puts "#{@board[6]} | #{@board[7]} | #{@board[8]}"
+  end
+  def [](index) # access board inside player file
+    @board[index]
+  end
+  def []=(index, value) # acess and change board inside other files
+    @board[index] = value
   end
 end
-board = Board.new
-
-board.display_board
